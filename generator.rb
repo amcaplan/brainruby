@@ -6,9 +6,27 @@ def dollars_for(num)
   (['$$/$$'] * num).join('+')
 end
 
-@program = %{ruby -e "#{File.read(ARGV[0])}"}.each_char.map { |char|
-  dollars_for(char.ord)
-}.join('<<')
+def dollarify(string)
+  string.each_char.map { |char|
+    dollars_for(char.ord)
+  }
+end
+
+def dollarify_escaping_quotes(string)
+  string.each_char.map { |char|
+    if char == '"'
+      dollars_for('\\'.ord) + '<<' + dollars_for(char.ord)
+    else
+      dollars_for(char.ord)
+    end
+  }
+end
+
+@program = (
+  dollarify('ruby -e "') +
+  dollarify_escaping_quotes(File.read(ARGV[0])) +
+  dollarify('"')
+).join('<<')
 
 out = ARGV[1]
 FileUtils.touch(out) unless File.exist?(out)
