@@ -27,4 +27,6 @@ You can then run the output file as usual:
 ruby /path/to/output/file.rb
 ```
 
+Curious how it works?  I made an [explanatory video](https://www.youtube.com/watch?v=hVrNnc26oTs).
+
 That's it!  Have fun!
