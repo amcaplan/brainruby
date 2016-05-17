@@ -21,4 +21,10 @@ For example:
 ruby generator.rb /path/to/some/file.rb /path/to/output/file.rb
 ```
 
+You can then run the output file as usual:
+
+``` sh
+ruby /path/to/output/file.rb
+```
+
 That's it!  Have fun!
